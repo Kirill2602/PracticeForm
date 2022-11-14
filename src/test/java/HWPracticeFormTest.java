@@ -1,9 +1,6 @@
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
@@ -17,7 +14,6 @@ public class HWPracticeFormTest {
     static void setup() {
         new ChromeOptions().addArguments("start-maximized");
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.holdBrowserOpen = true;
     }
 
     @Test
@@ -53,6 +49,7 @@ public class HWPracticeFormTest {
         $x("//div[@id='city']//div[@class=' css-tlfecz-indicatorContainer']").click();
         $x("//div[@class=' css-26l3qy-menu']//div[text()='Gurgaon']").shouldBe(visible).click();
         $x("//button[@id='submit']").submit();
+
         $x("//div[@id='example-modal-sizes-title-lg']").shouldHave(text("Thanks for submitting the form"));
         $x("//table//tr/td[text()='Student Name']/following-sibling::td").shouldHave(text(firstName + " " + lastName));
         $x("//table//tr/td[text()='Student Email']/following-sibling::td").shouldHave(text(email));
@@ -60,10 +57,8 @@ public class HWPracticeFormTest {
         $x("//table//tr/td[text()='Gender']/following-sibling::td").shouldHave(text("Male"));
         $x("//table//tr/td[text()='Date of Birth']/following-sibling::td").shouldHave(text("26 February,1990"));
         $x("//table//tr/td[text()='Address']/following-sibling::td").shouldHave(text(address));
-        $x("//table//tr/td[text()='Date of Birth']/following-sibling::td").shouldHave(text("26 February,1990"));
         $x("//table//tr/td[text()='Subjects']/following-sibling::td").shouldHave(text("Maths, Accounting"));
         $x("//table//tr/td[text()='Hobbies']/following-sibling::td").shouldHave(text("Sports, Reading"));
-        $x("//table//tr/td[text()='Picture']/following-sibling::td").shouldHave(text("cat.jpg"));
         $x("//table//tr/td[text()='Picture']/following-sibling::td").shouldHave(text("cat.jpg"));
         $x("//table//tr/td[text()='State and City']/following-sibling::td").shouldHave(text("NCR Gurgaon"));
         $x("//button[@id='closeLargeModal']").shouldBe(visible).pressEscape();
