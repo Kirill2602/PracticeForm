@@ -17,7 +17,6 @@ public class HWPracticeFormTest {
     static void setup() {
         new ChromeOptions().addArguments("start-maximized");
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.holdBrowserOpen = true;
     }
 
     @Test
