@@ -5,55 +5,59 @@ import pages.components.CalendarComponent;
 import pages.components.RegistrationResultModal;
 import pages.components.UploadFileComponent;
 
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
+    private final String TITLE_TEXT = "Student Registration Form";
     CalendarComponent calendarComponent = new CalendarComponent();
     UploadFileComponent uploadFileComponent = new UploadFileComponent();
     RegistrationResultModal registrationResultModal = new RegistrationResultModal();
     private SelenideElement
-            firstNameInput = $x("//input[@id='firstName']"),
-            lastNameInput = $x("//input[@id='lastName']"),
-            emailInput = $x("//input[@id='userEmail']"),
-            phoneNumberInput = $x("//input[@id='userNumber']"),
+            firstNameInput = $("#firstName"),
+            lastNameInput = $("#lastName"),
+            emailInput = $("#userEmail"),
+            phoneNumberInput = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
-            subjectInput = $x("//div[@id='subjectsContainer']//input[@id='subjectsInput']"),
-            uploadFileInput = $x("//input[@id='uploadPicture']"),
-            addressTextArea = $x("//textarea[@id='currentAddress']"),
-            stateList = $x("//div[@id='state']//div[@class=' css-tlfecz-indicatorContainer']"),
-            cityList = $x("//div[@id='city']//div[@class=' css-tlfecz-indicatorContainer']"),
-            submitFormButton = $x("//button[@id='submit']");
+            subjectInput = $("#subjectsInput"),
+            uploadFileInput = $("#uploadPicture"),
+            addressTextArea = $("#currentAddress"),
+            stateList = $("#state"),
+            cityList = $("#city"),
+            submitFormButton = $("#submit");
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
-        $x("//div[text()='Practice Form']").shouldBe(visible);
-        $x("//h5[text()='Student Registration Form']").should(visible);
+        $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         return this;
     }
 
-    public RegistrationPage setFirstName(String firstName) {
-        firstNameInput.setValue(firstName);
+    public RegistrationPage setFirstName(String value) {
+        firstNameInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage setLastName(String lastName) {
-        lastNameInput.setValue(lastName);
+    public RegistrationPage setLastName(String value) {
+        lastNameInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage setEmail(String email) {
-        emailInput.setValue(email);
+    public RegistrationPage setEmail(String value) {
+        emailInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage setGender(String gender) {
-        $x("//label[contains(text(),'" + gender + "' )]").click();
+    public RegistrationPage setGender(String value) {
+        $(byText(value)).click();
+//        $x("//label[contains(text(),'" + value + "' )]").click();
         return this;
     }
 
-    public RegistrationPage setPhone(String phone) {
-        phoneNumberInput.setValue(phone);
+    public RegistrationPage setPhone(String value) {
+        phoneNumberInput.setValue(value);
         return this;
     }
 
@@ -68,30 +72,30 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setHobby(String hobby) {
-        $x("//label[contains(text(), '" + hobby + "')]").click();
+    public RegistrationPage setHobby(String value) {
+        $x("//label[contains(text(), '" + value + "')]").click();
         return this;
     }
 
-    public RegistrationPage myUploadFile(String path) {
-        uploadFileComponent.myUploadFile(uploadFileInput, path);
+    public RegistrationPage myUploadFile(String value) {
+        uploadFileComponent.myUploadFile(uploadFileInput, value);
         return this;
     }
 
-    public RegistrationPage setAddress(String address) {
-        addressTextArea.setValue(address);
+    public RegistrationPage setAddress(String value) {
+        addressTextArea.setValue(value);
         return this;
     }
 
-    public RegistrationPage setState(String state) {
+    public RegistrationPage setState(String value) {
         stateList.click();
-        $x("//div[@class=' css-26l3qy-menu']//div[text()='" + state + "']").shouldBe(visible).click();
+        stateList.$(byText(value)).click();
         return this;
     }
 
-    public RegistrationPage setCity(String city) {
+    public RegistrationPage setCity(String value) {
         cityList.click();
-        $x("//div[@class=' css-26l3qy-menu']//div[text()='" + city + "']").shouldBe(visible).click();
+        cityList.$(byText(value)).click();
         return this;
     }
 
@@ -99,8 +103,8 @@ public class RegistrationPage {
         submitFormButton.submit();
     }
 
-    public RegistrationPage verifyModalAppear(String modalTitle) {
-        registrationResultModal.verifyModalAppear(modalTitle);
+    public RegistrationPage verifyModalAppear(String value) {
+        registrationResultModal.verifyModalAppear(value);
         return this;
     }
 
@@ -109,8 +113,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public String getNameFromFilePath(String path) {
-        String[] parts = path.split("/");
+    public String getNameFromFilePath(String value) {
+        String[] parts = value.split("/");
         return parts[parts.length - 1];
     }
 }

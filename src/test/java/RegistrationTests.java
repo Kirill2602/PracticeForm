@@ -1,39 +1,53 @@
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import pages.constants.RegistrationFormConstants;
 import testBase.TestBase;
 
 public class RegistrationTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
-    RegistrationFormConstants constants = new RegistrationFormConstants();
+    String firstName = "Kirill",
+            lastName = "Spitsyn",
+            email = "kirill@mail.ru",
+            phone = "8967023334",
+            address = "CURRENT ADDRESS",
+            gender = "Male",
+            day = "26",
+            month = "February",
+            year = "1990",
+            subject = "Maths",
+            hobby = "Sport",
+            filePath = "src/test/resources/image/cat.jpg",
+            state = "NCR",
+            city = "Gurgaon",
+            modalTitle = "Thanks for submitting the form";
 
     @Test
     void fillPracticeFormTest() {
+
         registrationPage.openPage()
-                .setFirstName(constants.getFIRST_NAME())
-                .setLastName(constants.getLAST_NAME())
-                .setEmail(constants.getEMAIL())
-                .setGender(constants.getGENDER())
-                .setPhone(constants.getPHONE())
-                .setDate(constants.getDAY(), constants.getMONTH(), constants.getYEAR())
-                .setSubject(constants.getSUBJECT())
-                .setHobby(constants.getHOBBY())
-                .myUploadFile(constants.getFILE_PATH())
-                .setAddress(constants.getADDRESS())
-                .setState(constants.getSTATE())
-                .setCity(constants.getCITY())
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setGender(gender)
+                .setPhone(phone)
+                .setDate(day, month, year)
+                .setSubject(subject)
+                .setHobby(hobby)
+                .myUploadFile(filePath)
+                .setAddress(address)
+                .setState(state)
+                .setCity(city)
                 .submitForm();
 
-        registrationPage.verifyModalAppear(constants.getMODAL_TITLE())
-                .verifyResults("Student Name", constants.getFIRST_NAME() + " " + constants.getLAST_NAME())
-                .verifyResults("Student Email", constants.getEMAIL())
-                .verifyResults("Gender", constants.getGENDER())
-                .verifyResults("Mobile", constants.getPHONE())
-                .verifyResults("Date of Birth", constants.getDAY() + " " + constants.getMONTH() + "," + constants.getYEAR())
-                .verifyResults("Subjects", constants.getSUBJECT())
-                .verifyResults("Hobbies", constants.getHOBBY())
-                .verifyResults("Picture", registrationPage.getNameFromFilePath(constants.getFILE_PATH()))
-                .verifyResults("Address", constants.getADDRESS())
-                .verifyResults("State and City", constants.getSTATE() + " " + constants.getCITY());
+        registrationPage.verifyModalAppear(modalTitle)
+                .verifyResults("Student Name", firstName + " " + lastName)
+                .verifyResults("Student Email", email)
+                .verifyResults("Gender", gender)
+                .verifyResults("Mobile", phone)
+                .verifyResults("Date of Birth", day + " " + month + "," + year)
+                .verifyResults("Subjects", subject)
+                .verifyResults("Hobbies", hobby)
+                .verifyResults("Picture", registrationPage.getNameFromFilePath(filePath))
+                .verifyResults("Address", address)
+                .verifyResults("State and City", state + " " + city);
     }
 }
