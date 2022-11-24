@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import testBase.TestBase;
+import testbase.TestBase;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;

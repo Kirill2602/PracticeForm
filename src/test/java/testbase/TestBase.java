@@ -1,15 +1,14 @@
-package testBase;
+package testbase;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.chrome.ChromeOptions;
-import testVariables.Variables;
+import testdata.TestData;
 
-public class TestBase extends Variables {
+public class TestBase extends TestData {
     @BeforeAll
     static void setup() {
         new ChromeOptions().addArguments("start-maximized");
-        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
     }
 }

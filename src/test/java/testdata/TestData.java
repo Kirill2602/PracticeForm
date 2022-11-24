@@ -1,4 +1,4 @@
-package testVariables;
+package testdata;
 
 import com.github.javafaker.Faker;
 
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-public class Variables {
+public class TestData {
     Faker faker = new Faker();
     Random random = new Random();
     List<String> genderList = Arrays.asList("Male", "Female", "Other");
