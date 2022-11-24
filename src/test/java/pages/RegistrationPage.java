@@ -5,6 +5,8 @@ import pages.components.CalendarComponent;
 import pages.components.RegistrationResultModal;
 import pages.components.UploadFileComponent;
 
+import java.util.Date;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -52,7 +54,6 @@ public class RegistrationPage {
 
     public RegistrationPage setGender(String value) {
         $(byText(value)).click();
-//        $x("//label[contains(text(),'" + value + "' )]").click();
         return this;
     }
 
@@ -61,9 +62,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setDate(String day, String month, String year) {
+    public RegistrationPage setDate(Date birthday) {
         dateOfBirthInput.click();
-        calendarComponent.setDate(day, month, year);
+        calendarComponent.setDate(birthday);
         return this;
     }
 
