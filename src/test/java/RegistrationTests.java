@@ -1,3 +1,10 @@
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Link;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import testbase.TestBase;
@@ -11,8 +18,12 @@ public class RegistrationTests extends TestBase {
 
 
     @Test
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Проверка заполнения формы регистрации")
+    @Owner("Kirill")
+    @Link(value = "Страница регистрации", url = "https://demoqa.com//automation-practice-form")
     void fillPracticeFormTest() {
-
+        SelenideLogger.addListener("allure", new AllureSelenide());
         registrationPage.openPage()
                 .setFirstName(getFirstName())
                 .setLastName(getLastName())
