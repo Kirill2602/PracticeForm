@@ -21,7 +21,7 @@ public class RegistrationTests extends TestBase {
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Проверка заполнения формы регистрации")
     @Owner("Kirill")
-    @Link(value = "Страница регистрации", url = "https://demoqa.com//automation-practice-form")
+    @Link(value = "Страница регистрации", url = "https://demoqa.com/automation-practice-form")
     void fillPracticeFormTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         registrationPage.openPage()
