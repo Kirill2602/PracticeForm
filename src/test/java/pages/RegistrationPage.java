@@ -125,7 +125,7 @@ public class RegistrationPage {
         return this;
     }
 
-    @Step("Проверить соответствие данных в таблице введеным поле {key} значение {value}")
+    @Step("Проверить соответствие данных в таблице введеным в поле {key} значение {value}")
     public RegistrationPage verifyResults(String key, String value) {
         registrationResultModal.verifyResults(key, value);
         return this;
