@@ -13,8 +13,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import testdata.TestData;
 
 public class TestBase extends TestData {
-    @BeforeAll
     @Step("Подготовка")
+    @BeforeAll
     static void setup() {
         new ChromeOptions().addArguments("start-maximized");
         Configuration.baseUrl = "https://demoqa.com";
@@ -26,14 +26,14 @@ public class TestBase extends TestData {
         Configuration.browserCapabilities = capabilities;
     }
 
-    @BeforeEach
     @Step("Добавить логгер")
+    @BeforeEach
     void addLogger() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
-    @AfterEach
     @Step("Добавить вложения")
+    @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
