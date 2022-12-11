@@ -23,7 +23,6 @@ public class RegistrationTests extends TestBase {
     @Owner("Kirill")
     @Link(value = "Страница регистрации", url = "https://demoqa.com/automation-practice-form")
     void fillPracticeFormTest() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         registrationPage.openPage()
                 .setFirstName(getFirstName())
                 .setLastName(getLastName())
