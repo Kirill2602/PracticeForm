@@ -16,10 +16,14 @@ public class TestBase extends TestData {
     @Step("Подготовка")
     @BeforeAll
     static void setup() {
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        Configuration.browserSize = System.getProperty("browserSize");
+        System.out.println(System.getProperty("browserSize"));
         Configuration.baseUrl = System.getProperty("baseUrl","https://demoqa.com");
+        System.out.println(System.getProperty("baseUrl"));
         Configuration.browserVersion = System.getProperty("browserVersion");
-        Configuration.browser = System.getProperty("browser", "chrome");
+        System.out.println(System.getProperty("browserVersion"));
+        Configuration.browser = System.getProperty("browser");
+        System.out.println(System.getProperty("browser"));
         Configuration.remote = System.getProperty("remoteUrl", "https://user1:1234@selenoid.autotests.cloud") + "/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
